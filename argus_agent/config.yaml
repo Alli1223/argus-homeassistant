@@ -1,0 +1,47 @@
+# The Argus agent, run by Home Assistant's Supervisor. It uses the agent image Argus publishes with
+# each release, so the add-on version must match an Argus release.
+name: Argus Agent
+version: "0.8.1"
+slug: argus_agent
+description: Reports this Home Assistant machine to your Argus server
+url: https://github.com/Alli1223/argus-homeassistant
+image: ghcr.io/alli1223/argus-agent
+stage: experimental
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: services
+boot: auto
+
+# The machine's network counters and addresses, and its processes rather than the container's.
+host_network: true
+host_pid: true
+
+# The agent reads the machine's own /proc, /sys and /etc through /proc/1/root, which needs ptrace
+# read access to the host's init. AppArmor's container profile forbids that, so it is turned off.
+apparmor: false
+privileged:
+  - SYS_PTRACE
+
+# Lists Home Assistant's containers (Core, Supervisor and every add-on). Only works with
+# Protection mode turned off; without it the agent still reports everything else.
+docker_api: true
+
+environment:
+  ARGUS_CONFIG: /data/options.json
+  ARGUS_STATEDIRECTORY: /data/state
+  ARGUS_HOSTROOT: /proc/1/root
+  ARGUS_DOCKERSOCKET: /run/docker.sock
+
+# Option names match the agent's own settings, so /data/options.json is its config file as it is.
+options:
+  serverUrl: null
+  enrollmentToken: ""
+  containerActions: false
+  driveTemperatures: false
+schema:
+  serverUrl: url
+  enrollmentToken: password?
+  containerActions: bool
+  driveTemperatures: bool

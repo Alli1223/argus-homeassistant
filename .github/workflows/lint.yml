@@ -1,0 +1,27 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  addon:
+    name: Add-on config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: frenck/action-addon-linter@v2
+        with:
+          path: argus_agent
+
+  image:
+    name: Agent image exists
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: The image tag for this version is published
+        run: |
+          version="$(sed -n 's/^version: "\(.*\)"/\1/p' argus_agent/config.yaml)"
+          docker manifest inspect "ghcr.io/alli1223/argus-agent:$version" > /dev/null
+          echo "ghcr.io/alli1223/argus-agent:$version is published"

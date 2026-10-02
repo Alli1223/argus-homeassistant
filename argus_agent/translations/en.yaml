@@ -1,0 +1,18 @@
+configuration:
+  serverUrl:
+    name: Argus server URL
+    description: The address you open Argus at, such as https://argus.example.com.
+  enrollmentToken:
+    name: Enrollment token
+    description: >-
+      From Argus, under Add a system. Only needed the first time; once the agent has
+      registered it keeps its own key.
+  containerActions:
+    name: Allow container actions
+    description: >-
+      Lets people who can see this machine in Argus read container logs and start, stop and restart
+      containers, including Home Assistant's own. Off is safer.
+  driveTemperatures:
+    name: Read SATA drive temperatures
+    description: >-
+      On some drives this keeps them from spinning down. NVMe drives are always read.
