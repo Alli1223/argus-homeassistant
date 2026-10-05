@@ -1,7 +1,7 @@
 # The Argus agent, run by Home Assistant's Supervisor. It uses the agent image Argus publishes with
 # each release, so the add-on version must match an Argus release.
 name: Argus Agent
-version: "0.9.1"
+version: "0.9.2"
 slug: argus_agent
 description: Reports this Home Assistant machine to your Argus server
 url: https://github.com/Alli1223/argus-homeassistant
