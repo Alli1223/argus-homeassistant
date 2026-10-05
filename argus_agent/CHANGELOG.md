@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.3
+
+- Runs the Argus 0.9.3 agent.
+
 ## 0.9.2
 
 - Runs the Argus 0.9.2 agent.
