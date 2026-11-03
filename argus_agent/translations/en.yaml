@@ -12,7 +12,17 @@ configuration:
     description: >-
       Lets people who can see this machine in Argus read container logs and start, stop and restart
       containers, including Home Assistant's own. Off is safer.
+  powerActions:
+    name: Allow power actions
+    description: >-
+      Lets people who can see this machine in Argus, and their alert rules, shut it down and restart
+      it. Off is safer.
   driveTemperatures:
     name: Read SATA drive temperatures
     description: >-
       On some drives this keeps them from spinning down. NVMe drives are always read.
+  upsServer:
+    name: UPS server
+    description: >-
+      The Network UPS Tools server to read UPSes from, as host or host:port. Leave empty to use
+      localhost:3493, where the Network UPS Tools add-on listens.

@@ -24,7 +24,9 @@ so you can clear the token from the configuration.
 | Argus server URL | Where the agent reports. Use `https`; with plain `http` the agent's key travels unencrypted. |
 | Enrollment token | Registers the machine the first time the agent starts. |
 | Allow container actions | Lets people who can see this machine in Argus read container logs and start, stop and restart containers, Home Assistant's own included. Off by default. |
+| Allow power actions | Lets people who can see this machine in Argus shut it down and restart it, and alert rules shut it down when a UPS runs low. Off by default. |
 | Read SATA drive temperatures | Also reads SATA drives' temperatures. On some drives this stops them spinning down. NVMe drives are always read. |
+| UPS server | The Network UPS Tools server (upsd) to read UPSes from, as `host` or `host:port`. Left empty, the agent looks at `localhost:3493`, where the Network UPS Tools add-on listens. Set it to a NAS's address to read a UPS plugged into the NAS. |
 
 ## What the add-on is allowed to do, and why
 
